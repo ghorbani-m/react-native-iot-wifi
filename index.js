@@ -40,12 +40,16 @@ function isApiAvailable(...args) {
   NativeModules.IOTWifi.isApiAvailable(...args);
 }
 
+function getNetworkInfo(...args) {
+  NativeModules.IOTWifi.getNetworkInfo(...args);
+}
 module.exports = {
   connect: connect,
   connectSecure: connectSecure,
   getSSID: getSSID,
   isApiAvailable: isApiAvailable,
   removeSSID: removeSSID,
+  getNetworkInfo: getNetworkInfo
 };
 
 /**

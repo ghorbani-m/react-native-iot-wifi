@@ -72,7 +72,7 @@
         }
         
     }
-    
+
     RCT_REMAP_METHOD(getSSID,
                      callback:(RCTResponseSenderBlock)callback) {
         NSString *kSSID = (NSString*) kCNNetworkInfoKeySSID;
@@ -88,6 +88,22 @@
         }
 
         callback(@[@"Cannot detect SSID"]);
+    }
+
+    RCT_REMAP_METHOD(getNetworkInfo,
+                     callback2:(RCTResponseSenderBlock)callback2) {
+        
+        NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
+        for (NSString *ifnam in ifs) {
+            NSDictionary *info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
+            
+            if (info) {
+                callback2(@[info]);
+                return;
+            }
+        }
+        
+        callback2(@[[NSNull null]]);
     }
 @end
 

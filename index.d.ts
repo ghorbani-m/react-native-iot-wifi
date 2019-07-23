@@ -18,6 +18,7 @@ declare module 'react-native-iot-wifi' {
     function connect(...args: ConnectArgs): void;
     function connectSecure(...args: ConnectSecureArgs): void;
     function removeSSID(...args: RemoveConnectArgs): void;
+    function getNetworkInfo(cb: (info: any) => void): void;
   }
 
   export default RNWifi;
